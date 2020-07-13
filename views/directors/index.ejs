@@ -1,0 +1,27 @@
+<h1 class="ml-2"> Directors</h1>
+<div class="row">
+    <div class="col-md-6">
+        <% directors.forEach(director => { %>
+        <div class="mb-2 ml-2">
+            <%= director.name %>
+            <a class="btn btn-primary btn-sm" href="/directors/show/<%= director._id %>">View</a>
+            <a class="btn btn-primary btn-sm" href="/directors/edit/<%= director._id %>">Edit</a>
+            <form
+                method="POST"
+                style="display: inline;"
+                action="/directors/delete/<%= director._id  %>?_method=DELETE"
+            >
+                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+            </form>
+        </div>
+        <% }); %>
+    </div>
+</div>
+
+<h2 class="ml-2">Add Director</h2>
+<form class="mx-2 form-horizontal" action="/directors/create" method="post">
+    <label class="control-label">Name</label>
+    <input class="form-control" type="text" name="name">
+  
+    <button class="mt-2 btn btn-primary" type="submit">Save</button>
+</form>

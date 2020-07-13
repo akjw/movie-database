@@ -1,0 +1,6 @@
+<h2 class="ml-2">Edit Actor Information</h2>
+<form class="mx-2 form-horizontal" action="/actors/edit/<%= actor._id %>" method="post">
+    <label class="control-label">Name</label>
+    <input class="form-control" type="text" class="form-control" name="name" value="<%= actor.name %>" />
+    <button class="mt-2 btn btn-primary" type="submit">Save Changes</button>
+  </form>

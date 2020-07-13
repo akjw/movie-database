@@ -1,0 +1,6 @@
+<h2 class="ml-2">Edit Director Information</h2>
+<form class="mx-2 form-horizontal" action="/directors/edit/<%= director._id %>" method="post">
+    <label class="control-label">Name</label>
+    <input class="form-control" type="text" class="form-control" name="name" value="<%= director.name %>" />
+    <button class="mt-2 btn btn-primary" type="submit">Save Changes</button>
+  </form>

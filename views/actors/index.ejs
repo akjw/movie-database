@@ -1,0 +1,27 @@
+<h1 class="ml-2"> Actors</h1>
+<div class="row">
+    <div class="col-md-6">
+        <% actors.forEach(actor => { %>
+        <div class="mb-2 ml-2">
+            <%= actor.name %>
+            <a class="btn btn-primary btn-sm" href="/actors/show/<%= actor._id %>">View</a>
+            <a class="btn btn-primary btn-sm" href="/actors/edit/<%= actor._id %>">Edit</a>
+            <form
+                method="POST"
+                style="display: inline;"
+                action="/actors/delete/<%= actor._id  %>?_method=DELETE"
+            >
+                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+            </form>
+        </div>
+        <% }); %>
+    </div>
+</div>
+
+<h2 class="ml-2">Add Actor</h2>
+<form class="mx-2 form-horizontal" action="/actors/create" method="post">
+    <label class="control-label">Name</label>
+    <input class="form-control" type="text" name="name">
+  
+    <button class="mt-2 btn btn-primary" type="submit">Save</button>
+</form>

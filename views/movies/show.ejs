@@ -1,0 +1,70 @@
+<div class="mx-2">
+    <h2 class="mb-2"><%= movie.title %></h2>
+    <div class="mb-2">Description: <%= movie.description %></div>
+    <div class="mb-2">Genre: <%= movie.genre %></div>
+    <div class="mb-2">Director: <%= movie.director %></div>
+    <div class="mb-2">Image: <%= movie.imagePath %></div>
+    <div class="mb-2">Featured: <%= movie.featured %></div>
+</div>
+
+<!-- <div class="mx-2"><%= movie.title %> Cast List
+    <ol>
+        <% movie.actors.forEach(actor => {%>
+        <li><%= actor %> <a href="/remove/<%= movie._id %>/actor/<%= actor %>">Remove Item</a></li>
+        <% }) %>
+    </ol>
+    </div>
+    
+    <div class="mx-2"> Actors
+        <% actors.forEach(actor => {%>
+        <li>
+            <a href="/add/<%= movie._id %>/actor/<%= actor.name %>"
+                ><%= actor.name %></a>
+        </li>
+        <%})%>
+    </div> -->
+
+<div class="row">
+    <div class="mx-2 col-sm"><%= movie.title %>'s Cast List
+        <ol>
+            <% movie.actors.forEach(actor => {%>
+            <li><%= actor.name %> <a href="/remove/<%= movie._id %>/actor/<%= actor.name %>/<%= actor._id%>">Remove Item</a></li>
+            <% }) %>
+        </ol>
+    </div>
+    <div class="mx-2 col-sm"><%= movie.title %>'s Director(s)
+    </div>
+    <div class="mx-2 col-sm"><%= movie.title %>'s Genre(s)
+        <ol>
+            <% movie.genres.forEach(genre => {%>
+            <li><%= genre %> <a href="/remove/<%= movie._id %>/genre/<%= genre %>">Remove Item</a></li>
+            <% }) %>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="mx-2 col-sm"> Add Actor
+        <% actors.forEach(actor => {%>
+        <li>
+            <a href="/add/<%= movie._id %>/actor/<%= actor.name %>/<%= actor._id %>"
+                ><%= actor.name %></a>
+        </li>
+        <%})%>
+    </div>    
+    <div class="mx-2 col-sm"> Add Director 
+        <% directors.forEach(director => {%>
+        <li>
+            <a href="/add/<%= movie._id %>/director/<%= director.name %>"
+                ><%= director.name %></a>
+        </li>
+        <%})%>
+    </div>
+    <div class="mx-2 col-sm"> Add Genre
+        <% genres.forEach(genre => {%>
+        <li>
+            <a href="/add/<%= movie._id %>/genre/<%= genre.type %>"
+                ><%= genre.type %></a>
+        </li>
+        <%})%>
+    </div>
+</div>

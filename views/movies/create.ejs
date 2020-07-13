@@ -1,0 +1,30 @@
+<h2 class="ml-2">Add Movie</h2>
+<form class="mx-2 form-horizontal" action="/create" method="post">
+    <label class="control-label">Title</label>
+    <input class="form-control" type="text" name="title">
+    <label class="control-label">Description</label>
+    <input class="form-control" type="text" name="description">
+    <label class="control-label">Genre</label> <br>
+    <% genres.forEach(genre => { %>
+        <input type="checkbox" name="genres" value="<%= genre.id %>"><%= genre.type %><br>
+        <% }) %>
+        
+    <label class="control-label">Director</label><br>
+    <select class="mb-2" name="director">
+        <option value="">Select</option>
+        <% directors.forEach(director => { %>
+            <option value="<%= director._id %>"><%= director.name %></option>
+        <% }) %>
+    </select>
+    <br>
+    <label class="control-label">Actors</label> <br>
+    <% actors.forEach(actor => { %>
+        <input type="checkbox" name="actors" value="<%= actor.id %>"><%= actor.name %><br>
+        <% }) %>
+    <label class="control-label">Image</label>
+    <input class="form-control" type="text" name="imagePath">
+    <label class="control-label">Featured</label>
+    <input class="form-control" type="text" name="featured" placeholder="true/false">
+
+    <button class="mt-2 btn btn-primary" type="submit">Save</button>
+</form>
