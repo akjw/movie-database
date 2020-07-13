@@ -1,8 +1,7 @@
 <h2>Actor</h2>
 <div>Name: <%= actor.name %></div>
-<!-- <% let actorFilmography = actor.filmography.map(movie => movie.name) %> -->
 <div>Filmography</div>
-<% actor.filmography.forEach(movie => { %>
+<% actor.movies.forEach(movie => { %>
     <li><%= movie.title %></li>
 
 <% }) %>

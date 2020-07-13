@@ -72,57 +72,77 @@ app.get("/create", async (req, res) => {
         console.log(err)
     }
 })
+
 app.post("/create", (req, res) => {
-    // try {
-    //     let movie = await new Movie(req.body).save()
-    //     let directorUpdate = await Director.findByIdAndUpdate(movie.director, {$push: {works: movie._id}})
-    //     let genreUpdate = await movie.genres.forEach(genre => {
-    //                     Genre.findByIdAndUpdate(genre, {$push: {movies: movie._id}})})
-    //                     res.redirect("/")
-    // }
-    // catch (err) {
-    //     console.log(err)
-    // }
-    let movie = new Movie(req.body)
+    let movie = new Movie(req.body);
+    movie.save()
+      .then(() => {
+        return Director.findByIdAndUpdate(movie.director, {$push: {movies: movie._id}}).exec();
+      })
+      .then(() => {
+        let movieActors = movie.actors.map(actor => {
+          Actor.findByIdAndUpdate(actor, {$push: {movies: movie._id}}).exec();
+        });
+        return Promise.all(movieActors);
+      })
+      .then(() => {
+        let movieGenres = movie.genres.map(genre => {
+          Genre.findByIdAndUpdate(genre, {$push: {movies: movie._id}}).exec();
+        });
+        return Promise.all(movieGenres);
+      })
+      .then(() => {
+        res.redirect('/');
+      })
+      .catch(err => console.log(err));
+  });
+
+/*
+Alternate Method
+  app.post("/create", (req, res) => {
+    let movie = new Movie(req.body);
     movie
-    .save()
-    .then(()=>{
-        console.log(movie)
-        Director.findByIdAndUpdate(movie.director, {$push: {works: movie._id}})
-        movie.actors.forEach(actor => {
-            Actor.findByIdAndUpdate(actor, {$push: {filmography: movie._id}})
-        })
-        movie.genres.forEach(genre => {
-            Genre.findByIdAndUpdate(genre, {$push: {movies: movie._id}})
-        })
-        res.redirect("/")
-        // .then(()=>{
-        //     movie.actors.forEach(actor => {
-        //         Actor.findByIdAndUpdate(actor, {$push: {filmography: movie._id}})
-        //     })
-        //     .then(() => {
-        //         movie.genres.forEach(genre => {
-        //             Genre.findByIdAndUpdate(genre, {$push: {movies: movie._id}})
-        //         })
-        //         .then(()=>{
-        //             res.redirect("/")
-        //         })
-        //         .catch(err => {
-        //             console.log(err)
-        //         })
-        //     })
-        //     .catch(err => {
-        //         console.log(err)
-        //     })
-        // }) 
-        // .catch(err => {
-        //     console.log(err)
-        // })
-    })
-    .catch(err => {
-        console.log(err)
-    })
-})
+      .save()
+      .then(() => {
+        let movieActors = movie.actors.map(actor => {
+          Actor.findById(actor)
+            .then(actor => {
+              actor.filmography.push(movie._id);
+              return actor.save();
+            });
+        });
+        return Promise.all(movieActors);
+      })
+      .then(() => {
+        return Director.findById(movie.director);
+      })
+      .then(director => {
+        director.works.push(movie._id);
+        return director.save();
+      })
+      .then(() => {
+        res.redirect('/');
+      })
+      .catch(err => console.log(err));
+  });
+*/
+
+// app.post("/create", (req, res) => {
+//     let movie = new Movie(req.body)
+//     movie
+//     .save()
+//     .then(()=>{
+//         Director.findById(movie.director).then(director => {
+//             director.works.push(movie._id);
+//             director.save().then(() => {
+//                 res.redirect("/")
+//             })
+//         })
+//     })
+//     .catch(err => {
+//         console.log(err)
+//     })
+// })
 
 app.get("/edit/:id", async (req, res) => {
     try {

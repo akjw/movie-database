@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const directorSchema = Schema({
     name: String,
-    works: [{
+    movies: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Movie",
     }]
