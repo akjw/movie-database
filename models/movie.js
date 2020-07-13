@@ -22,7 +22,10 @@ const movieSchema = Schema ({
         ref: "Actor",
     }],
     imagePath:  String,
-    featured: Boolean,
+    featured: {
+        type: String,
+        enum: ["true", "false"],
+    },
 });
 
 const Movie = mongoose.model("Movie", movieSchema);

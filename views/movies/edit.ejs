@@ -10,21 +10,27 @@
         <input type="checkbox" name="genres" <%= movieGenres.includes(genre.name) ? "checked" : "" %> value="<%= genre.id %>"><%= genre.name %><br>
         <% }) %>
     <label class="control-label">Director</label>
-    <div><%= movie.director.name %></div>
+    <div>
     <select class="mb-2" name="director">
       <option value="">Select</option>
       <% directors.forEach(director => { %>
           <option <%= movie.director.name == director.name ? "selected" : "" %> value="<%= director._id %>"><%= director.name %></option>
       <% }) %>
     </select>
+  </div>
     <label class="control-label">Actors</label>
+    <div>
     <% let movieActors = movie.actors.map(el => el.name) %>
       <% actors.forEach(actor => { %>
         <input type="checkbox" name="actors" <%= movieActors.includes(actor.name) ? "checked" : "" %> value="<%= actor.id %>"><%= actor.name %><br>
         <% }) %>
+      </div>
     <label class="control-label">Image</label>
     <input class="form-control" type="text" class="form-control" name="imagePath" value="<%= movie.imagePath %>" />
-    <label class="control-label">Featured</label>
+    <label class="control-label">Featured</label> <br>
+    <input type="radio" name="featured" <%= movie.featured == "true" ? "checked" : "" %> value="true">True <br>
+    <input type="radio" name="featured" <%= movie.featured == "false" ? "checked" : "" %> value="false">False <br>
+    
     <input class="form-control" type="text" class="form-control" name="featured" value="<%= movie.featured %>" />
     <button class="mt-2 btn btn-primary" type="submit">Save Changes</button>
   </form>

@@ -2,9 +2,12 @@
     <h2 class="mb-2"><%= movie.title %></h2>
     <div class="mb-2">Description: <%= movie.description %></div>
     <div class="mb-2">Genres: 
+        <ul>
         <% movie.genres.forEach(genre => { %>
-            <div><%= genre.name %></div>
-       <% }) %></div>
+            <li><%= genre.name %></li>
+       <% }) %>
+    </ul>
+    </div>
     <div class="mb-2">Director: <%= movie.director.name %></div>
     <div class="mb-2">Image: <%= movie.imagePath %></div>
     <div class="mb-2">Featured: <%= movie.featured %></div>
