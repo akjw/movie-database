@@ -14,7 +14,9 @@ router.get('/', (req, res) => {
 
 router.get('/show/:id', (req, res) => {
     Actor.findById(req.params.id)
+    .populate('filmography')
     .then((actor) => {
+        console.log(actor)
         res.render("actors/show", {actor})
     })
     .catch(err => {

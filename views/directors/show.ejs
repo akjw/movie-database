@@ -1,2 +1,5 @@
 <h2>Director</h2>
 <div>Name: <%= director.name %></div>
+<% director.works.forEach(movie => { %>
+    <div><%= movie.title %></div>
+<% }) %>

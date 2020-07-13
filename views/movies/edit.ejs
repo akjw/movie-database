@@ -4,13 +4,11 @@
     <input class="form-control" type="text" class="form-control" name="title" value="<%= movie.title %>" />
     <label class="control-label">Description</label>
     <input class="form-control" type="text" class="form-control" name="description" value="<%= movie.description %>" />
-    <label class="control-label">Genres</label>
-    <% movie.genres.forEach(genre => { %>
-    <div><%= genre.type %></div>
-    <% }) %>
-    <% genres.forEach(genre => { %>
-      <input type="checkbox" name="genres" value="<%= genre.id %>"><%= genre.type %><br>
-      <% }) %>
+    <label class="control-label">Genres</label><br>
+    <% let movieGenres = movie.genres.map(el => el.name) %>
+      <% genres.forEach(genre => { %>
+        <input type="checkbox" name="genres" <%= movieGenres.includes(genre.name) ? "checked" : "" %> value="<%= genre.id %>"><%= genre.name %><br>
+        <% }) %>
     <label class="control-label">Director</label>
     <div><%= movie.director.name %></div>
     <select class="mb-2" name="director">

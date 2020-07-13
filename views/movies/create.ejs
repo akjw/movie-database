@@ -6,7 +6,7 @@
     <input class="form-control" type="text" name="description">
     <label class="control-label">Genre</label> <br>
     <% genres.forEach(genre => { %>
-        <input type="checkbox" name="genres" value="<%= genre.id %>"><%= genre.type %><br>
+        <input type="checkbox" name="genres" value="<%= genre.id %>"><%= genre.name %><br>
         <% }) %>
         
     <label class="control-label">Director</label><br>

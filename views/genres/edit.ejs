@@ -1,6 +1,6 @@
 <h2 class="ml-2">Edit Genre Information</h2>
 <form class="mx-2 form-horizontal" action="/genres/edit/<%= genre._id %>" method="post">
     <label class="control-label">Type</label>
-    <input class="form-control" type="text" class="form-control" name="type" value="<%= genre.type %>" />
+    <input class="form-control" type="text" class="form-control" name="name" value="<%= genre.name %>" />
     <button class="mt-2 btn btn-primary" type="submit">Save Changes</button>
   </form>

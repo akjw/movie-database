@@ -3,7 +3,7 @@
     <div class="col-md-6">
         <% genres.forEach(genre => { %>
         <div class="mb-2 ml-2">
-            <%= genre.type %>
+            <%= genre.name %>
             <a class="btn btn-primary btn-sm" href="/genres/show/<%= genre._id %>">View</a>
             <a class="btn btn-primary btn-sm" href="/genres/edit/<%= genre._id %>">Edit</a>
             <form
@@ -20,8 +20,8 @@
 
 <h2 class="ml-2">Add Genre</h2>
 <form class="mx-2 form-horizontal" action="/genres/create" method="post">
-    <label class="control-label">Type</label>
-    <input class="form-control" type="text" name="type">
+    <label class="control-label">Name</label>
+    <input class="form-control" type="text" name="name">
   
     <button class="mt-2 btn btn-primary" type="submit">Save</button>
 </form>
