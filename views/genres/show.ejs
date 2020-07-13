@@ -1,2 +1,6 @@
 <h2>Genre</h2>
 <div>Type: <%= genre.type %></div>
+<% genre.movies.forEach(movie => { %>
+    <li><%= movie.title %></li>
+
+<% }) %>

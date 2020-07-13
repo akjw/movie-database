@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
 
 router.get('/show/:id', (req, res) => {
     Director.findById(req.params.id)
+    .populate('works')
     .then((director) => {
         res.render("directors/show", {director})
     })

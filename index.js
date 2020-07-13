@@ -86,9 +86,9 @@ app.post("/create", (req, res) => {
     let movie = new Movie(req.body)
     movie
     .save()
-    .then((movie)=>{
+    .then(()=>{
         console.log(movie)
-        // Director.findByIdAndUpdate(movie.director, {$push: {works: movie._id}})
+        Director.findByIdAndUpdate(movie.director, {$push: {works: movie._id}})
         movie.actors.forEach(actor => {
             Actor.findByIdAndUpdate(actor, {$push: {filmography: movie._id}})
         })
